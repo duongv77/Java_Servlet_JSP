@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/assmjava4</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.default_schema">assmjava4</property>
+        <mapping class="com.entity.User"></mapping>
+        <mapping class="com.entity.Favorite"></mapping>
+        <mapping class="com.entity.Share"></mapping>
+        <mapping class="com.entity.Video"></mapping>
+    </session-factory>
+</hibernate-configuration>
