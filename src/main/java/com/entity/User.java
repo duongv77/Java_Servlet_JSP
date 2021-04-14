@@ -44,7 +44,6 @@ public class User  implements Serializable{
 	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List<Favorite> favorite;
 	
-	
 	public List<Share> getShare() {
 		return share;
 	}

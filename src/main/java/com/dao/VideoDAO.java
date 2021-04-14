@@ -8,12 +8,12 @@ import org.hibernate.Session;
 
 import com.entity.User;
 import com.entity.Video;
-import com.utils.Hibenate;
+import com.utils.HibenateUtil;
 
 public class VideoDAO {
 	private Session hSession;
 	public VideoDAO() {
-		hSession = Hibenate.getSession();
+		hSession = HibenateUtil.getSession();
 	}
 	
 	public List<Video> paginate(int offset, int limit) {
@@ -28,5 +28,17 @@ public class VideoDAO {
 	public Video findByID(int id) {
 		Video entity = this.hSession.get(Video.class, id); //truy vấn trả về id cần tìm
 		return entity;
+	}
+	
+	public void update(Video video) {
+		try {
+			this.hSession.clear();
+			this.hSession.beginTransaction();
+			this.hSession.update(video);
+			this.hSession.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.hSession.getTransaction().rollback();
+		}
 	}
 }

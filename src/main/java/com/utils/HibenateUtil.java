@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Hibenate {
+public class HibenateUtil {
 	private static  SessionFactory factory;
 	private static  Session session;
 	public static SessionFactory getSessionFactory() {

@@ -5,12 +5,12 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import com.entity.User;
-import com.utils.Hibenate;
+import com.utils.HibenateUtil;
 
 public class UserDAO {
 	private Session hSession;
 	public UserDAO() {
-		hSession = Hibenate.getSession();
+		hSession = HibenateUtil.getSession();
 	}
 	
 	public User login(String email, String password) {

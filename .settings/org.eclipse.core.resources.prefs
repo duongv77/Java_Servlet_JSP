@@ -2,4 +2,4 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/dao/UserDAO.java=UTF-8
 encoding//src/main/java/com/dao/VideoDAO.java=UTF-8
 encoding//src/main/java/com/entity/User.java=UTF-8
-encoding//src/main/java/com/utils/Hibenate.java=UTF-8
+encoding//src/main/java/com/utils/HibenateUtil.java=UTF-8

@@ -44,7 +44,6 @@ public class Home extends BaseLayOut {
 		int limit = limitStr ==null? 5 : Integer.parseInt(pageStr);
 		
 		int offset = limit*(page-1);
-		
 		request.setAttribute("page", page);
 		List<Video> ListVideo = this.videoDAO.paginate(offset, limit);
 		request.setAttribute("user", user);

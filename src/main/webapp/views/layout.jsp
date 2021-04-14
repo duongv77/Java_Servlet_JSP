@@ -24,7 +24,8 @@
 	<div class="container-fluid">
 		<a class="navbar-branch" href="#" type="button" data-toggle="collapse" 
 			data-target="#navbarResponsive2">
-			<img alt="" src="./anh/duong.png" height="50">
+			<img alt="" src="${ user.avatar }" height="40">
+			 
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" 
 			data-target="#navbarResponsive">

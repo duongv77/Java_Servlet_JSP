@@ -1,46 +1,49 @@
-package com.servlet;
+package com.auth;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.FavoriteDAO;
 import com.dao.VideoDAO;
+import com.entity.Favorite;
 import com.entity.User;
 import com.entity.Video;
 import com.layout.BaseLayOut;
 
 /**
- * Servlet implementation class XemCT
+ * Servlet implementation class LikeBaiViet
  */
-@WebServlet("/chitietbaiviet")
-public class ChiTietBaiViet extends BaseLayOut {
+@WebServlet("/likevideo")
+public class LikeBaiViet extends BaseLayOut {
+	private FavoriteDAO fvDAO;
 	private VideoDAO videoDAO;
-    public ChiTietBaiViet() {
+    public LikeBaiViet() {
         super();
-        
+        this.fvDAO = new FavoriteDAO();
         this.videoDAO = new VideoDAO();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		Video entity = this.videoDAO.findByID(id);
-		entity.setViews(entity.getViews()+1);
-		this.videoDAO.update(entity);
+		Video video = this.videoDAO.findByID(id);
+		Favorite entity = new Favorite();
 		User user =(User) request.getSession().getAttribute("user");
-		request.setAttribute("video", entity);
-		request.setAttribute("user", user);
-		String views = "/views/chitietbaiviet.jsp";
-		render(request, response, views);
+		long millis=System.currentTimeMillis();  
+		java.sql.Date date=new java.sql.Date(millis);  
+		try {
+			entity.setUser(user);
+			entity.setVideo(video);
+			entity.setLikedate(date+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.fvDAO.store(entity);
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
-
 }

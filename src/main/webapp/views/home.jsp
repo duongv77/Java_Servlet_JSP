@@ -9,8 +9,7 @@
 <title>Trang chủ</title>
 </head>
 <body>
-<form action="POST" action="/home">
-	
+
 <div id="slide" class="carousel slide" data-ride="carousel">
 	<ul class="carousel-indicators">
 		<li data-target="#slide" data-slide-to="0" class="active"></li>
@@ -58,7 +57,7 @@
 					<div class="col-md-12 col-lg-6">
 						<h2> ${ ListVideo.title }</h2>
 						<p> ${ ListVideo.description } </p>
-						
+						<p>Id bài viết : ${ ListVideo.id } </p>
 						<br>
 					</div>
 					<div class="col-lg-6">
@@ -68,12 +67,36 @@
 						
 					</div>
 				</div>
-				<button type="button" class="btn btn-outline" data-toggle="modal" data-target=${ user==null?"#acount" : "" }>
-					<img alt="" src="./anh/like.png" height="20px">Like
-				</button>
-				<button type="button"  class="btn btn-primary btn-hover" data-toggle="modal" data-target=${ user==null?"#acount" : "" }>
-					<img alt="" src="./anh/share.png" height="20px">Share
-				</button>
+				
+				<div class="row">
+					<div class="col-md-11 col-lg-9">
+						<c:choose>
+							<c:when test="${ user !=  null }">
+								<a href="/ASSM/likevideo?id=${ ListVideo.id }" >
+								<button type="button" class="btn btn-outline">
+									<img alt="" src="./anh/like.png" height="20px">Like
+								</button>
+									
+								</a>
+								<button type="button"  class="btn btn-primary btn-hover" >
+									<img alt="" src="./anh/share.png" height="20px">Share
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-outline" data-toggle="modal" data-target="#acount">
+									<img alt="" src="./anh/like.png" height="20px">Like
+								</button>
+								<button type="button"  class="btn btn-primary btn-hover" data-toggle="modal" data-target="#acount">
+									<img alt="" src="./anh/share.png" height="20px">Share
+								</button>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<div class="col-md-1 col-lg-3 ">
+						<p>${ ListVideo.views } Lượt xem</p>
+					</div>
+				</div>
+				
 			</div>		
 			<hr>	
 	</c:forEach>
@@ -91,7 +114,7 @@
 		</li>
 	</ul>	
 </div>
-</form>
+
 <div class="modal fade" id="acount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

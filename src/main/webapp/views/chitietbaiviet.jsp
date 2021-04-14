@@ -24,10 +24,18 @@
 						<img src=${ video.poster } class="img-fluid">
 					</div>
 				</div>
-				<button type="button" class="btn btn-outline" >
-					<img alt="" src="./anh/like.png" height="20px">Like
-				</button>
-				<button type="button"  class="btn btn-primary btn-hover"><img alt="" src="./anh/share.png" height="20px">Share</button>
+				<div class="row">
+					<div class="col-md-11 col-lg-9">
+						<button type="button" class="btn btn-outline" >
+							<img alt="" src="./anh/like.png" height="20px"> Like
+						</button>
+						<button type="button"  class="btn btn-primary btn-hover"><img alt="" src="./anh/share.png" height="20px">Share</button>
+					</div>
+					<div class="col-md-1 col-lg-3">
+						<p>${ video.views } Lượt xem</p>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		<div class="col-1"></div>
