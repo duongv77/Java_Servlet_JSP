@@ -9,8 +9,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+@NamedQueries(
+		@NamedQuery(
+				name="OderVideoDESC",
+				query="SELECT obj FROM Video obj ORDER BY obj.views DESC"
+		)
+)
 
 @Entity
 @Table(name="videos") 
@@ -33,7 +41,7 @@ public class Video implements Serializable{
 	private String description;
 	
 	@Column(name="active")
-	private String active;
+	private Integer active;
 	
 	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List<Share> share;
@@ -100,11 +108,11 @@ public class Video implements Serializable{
 		this.description = description;
 	}
 
-	public String getActive() {
+	public Integer getActive() {
 		return active;
 	}
 
-	public void setActive(String active) {
+	public void setActive(Integer active) {
 		this.active = active;
 	}
 	

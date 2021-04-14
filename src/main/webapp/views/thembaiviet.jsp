@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-    
+ <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
-<!-- Import Boostrap css, js, font awesome here -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
+<title>Thêm bài viết</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
@@ -18,8 +16,7 @@
 	<link href="./css/style.css" rel="stylesheet">
 </head>
 <body>
-<form action="POST" action="/home">
-	
+
 <nav class="navbar navbar-expand-md navbar-light sticky-top">
 	<div class="container-fluid">
 		<a class="navbar-branch" href="#" type="button" data-toggle="collapse" 
@@ -67,11 +64,35 @@
 		</div>
 	</div>
 </nav>
-<div >
-	<jsp:include page="${ views }" />
+<div class="container">
+ <form method="POST" action="/ASSM/thembaiviet" >        
+	
+	 	<div class="col-md-3">
+            </div>
+            <div class="col-md-9">
+    	        <h1 class="">Thêm bài viết</h1>
+            </div>
+        <hr>
+         
+        <div class="form-group">
+		    <label for="tieude">Tiêu đề</label>
+		    <input  type="text" class="form-control" id="tieude" aria-describedby="emailHelp" placeholder="Nhập tiêu đề. . . " name="title">
+		 </div>
+		<div class="form-group">
+		   	<label for="exampleFormControlTextarea1">Nội dung</label>
+		    <textarea  class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung. . ." name="description"></textarea>
+		 </div>
+		 <div class="from-group">
+		 	<label >Poster</label>
+		 	<input class="form-control" type="file" name="anh">
+		 </div>
+		 <br>
+		 <button type="submit" class="btn btn-primary btn-hover" >
+				Thêm
+		</button>
+	
+</form>
 </div>
-
-
 <div class="container-fluid padding">	
 	<div class="row text-center padding">
 		<div class="col-12">
@@ -142,6 +163,6 @@
         </div>
     </div>
 </div>
-</form>
+
 </body>
 </html>

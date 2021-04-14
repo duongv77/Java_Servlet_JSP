@@ -7,35 +7,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class TaoTaiKhoan
- */
-@WebServlet("/TaoTaiKhoan")
+import org.apache.commons.beanutils.BeanUtils;
+
+import com.dao.UserDAO;
+import com.entity.User;
+
+@WebServlet("/taotaikhoan")
 public class TaoTaiKhoan extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private UserDAO userDAO;
     public TaoTaiKhoan() {
         super();
-        // TODO Auto-generated constructor stub
+        this.userDAO = new UserDAO();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/views/taotaikhoan.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String fullname = request.getParameter("fullname");
+		if(email=="" || password=="" || fullname=="") {
+			int check = 1;
+			request.setAttribute("check", check);
+			request.getRequestDispatcher("/views/taotaikhoan.jsp").forward(request, response);
+		}
+		
+		User entity = new User();
+		try {
+			BeanUtils.populate(entity, request.getParameterMap());
+			entity.setAdmin(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.userDAO.store(entity);
+		
+		int check = 1;
+		request.setAttribute("check", check);
+		request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
 	}
 
 }

@@ -41,4 +41,19 @@ public class VideoDAO {
 			this.hSession.getTransaction().rollback();
 		}
 	}
+	
+	public Video store(Video entity) {
+		this.hSession.beginTransaction();
+		Integer id = (Integer) this.hSession.save(entity);
+		this.hSession.getTransaction().commit();
+		
+		entity.setId(id);
+		
+		return entity;
+	}
+//	public int slVideo() {
+//		String hql = "SELECT count(obj) FROM Video obj";
+//		Query query = this.hSession.createNamedQuery(hql);
+//		int sl =query.get;
+//	}
 }

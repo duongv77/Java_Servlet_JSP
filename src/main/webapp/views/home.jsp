@@ -103,34 +103,42 @@
 </div>
 <div class="container">
 	<ul class="pagination mx-auto">
+	<c:if test="${ page>1 }">
 		<li class="page-item ">
-			<a href="/ASSM/home?page=${ page-1 }" class="btn btn-outline-secondary">Pre</a>
+			<a href="/ASSM/home?page=${ page-1 }" class="btn btn-outline-secondary">&laquo;</a>
 		</li>
+	</c:if>
+		
 		<li class="page-item">
 			<a class="btn btn-outline-secondary">${ page }</a>
 		</li>
 		<li class="page-item">
-			<a  href="/ASSM/home?page=${ page+1 }" class="btn btn-outline-secondary">Next</a>
+			<a  href="/ASSM/home?page=${ page+1 }" class="btn btn-outline-secondary">&raquo;</a>
 		</li>
 	</ul>	
 </div>
-
-<div class="modal fade" id="acount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Bạn chưa đăng nhập vui lòng đăng nhập để sử dụng chức năng !</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Từ chối</button>
-                    <a class="btn btn-primary" href="/ASSM/dangnhap">Đăng nhập</a>
-                </div>
+<div class="modal fade" id="acount" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+                <h5 class="modal-title">Bạn chưa đăng nhập</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            
+            <div class="modal-body">
+                Vui lòng đăng nhập để sử dụng chức năng này !!
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                 <a class="btn btn-primary" href="/ASSM/dangnhap">Đăng nhập</a>
+            </div>
+            
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -33,15 +33,14 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Đăng kí tài khoản!</h1>
                                     </div>
-                                    <c:if test="${ check == 1  }">
-                                    	<div class="alert alert-success" role="alert">
-										  Đăng kí thành công !
-										</div>
-                                    </c:if>
-                                    
-                                    <form class="user" method="POST" action="/ASSM/dangnhap">
+                                    <form class="user" method="POST" action="/ASSM/taotaikhoan">
+                                    	<div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="fullname" name="fullname" 
+                                                placeholder="Nhập họ và tên...">
+                                        </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
@@ -51,24 +50,21 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Nhập mật khẩu...">
                                         </div>
-                                        <c:if test="${ error == 1}">
+                                        <c:if test="${ check == 1}">
 	                                        <div class="alert alert-danger" role="alert">
-											  Tài khoản hoặc mật khẩu không chính xác!
+											  Không được để trống !
 											</div>
                                         </c:if>
                                         
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Đăng nhập
+                                            Đăng kí
                                         </button>
                                         
                                     </form>
                                     
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Bạn quên mật khẩu?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="/ASSM/taotaikhoan">Đăng kí!</a>
+                                        <a class="small" href="/ASSM/dangnhap">Quay lại</a>
                                     </div>
                                 </div>
                             </div>

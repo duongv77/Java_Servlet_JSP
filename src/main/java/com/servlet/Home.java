@@ -3,6 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import com.dao.VideoDAO;
 import com.entity.User;
 import com.entity.Video;
 import com.layout.BaseLayOut;
+import com.utils.HibenateUtil;
 
 /**
  * Servlet implementation class Home
@@ -37,17 +39,17 @@ public class Home extends BaseLayOut {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user =(User) request.getSession().getAttribute("user");
+		String pageSTR = request.getParameter("page");
+		int page = pageSTR == null ? 1 : Integer.parseInt(request.getParameter("page"));
+		int first = page == 1 ? 0 : (page-1)*6;
 		
-		String pageStr = request.getParameter("page");
-		String limitStr = request.getParameter("limit");
-		int page = pageStr ==null? 1 : Integer.parseInt(pageStr);
-		int limit = limitStr ==null? 5 : Integer.parseInt(pageStr);
-		
-		int offset = limit*(page-1);
 		request.setAttribute("page", page);
-		List<Video> ListVideo = this.videoDAO.paginate(offset, limit);
+		TypedQuery<Video> query = HibenateUtil.getSession().createNamedQuery("OderVideoDESC", Video.class);
+		query.setFirstResult(first);
+		query.setMaxResults(6);
+		List<Video> listVideo = query.getResultList();
 		request.setAttribute("user", user);
-		request.setAttribute("ListVideo", ListVideo);
+		request.setAttribute("ListVideo", listVideo);
 		String views = "/views/home.jsp";
 		render(request, response, views);
 	}

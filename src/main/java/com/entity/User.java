@@ -60,7 +60,7 @@ public class User  implements Serializable{
 		this.favorite = favorite;
 	}
 
-	private User() {
+	public User() {
 
 	}
 

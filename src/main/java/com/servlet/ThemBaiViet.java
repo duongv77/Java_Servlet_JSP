@@ -3,44 +3,43 @@ package com.servlet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.dao.VideoDAO;
 import com.entity.User;
 import com.entity.Video;
 import com.layout.BaseLayOut;
 
-/**
- * Servlet implementation class XemCT
- */
-@WebServlet("/chitietbaiviet")
-public class ChiTietBaiViet extends BaseLayOut {
+@WebServlet("/thembaiviet")
+public class ThemBaiViet extends BaseLayOut {
 	private VideoDAO videoDAO;
-    public ChiTietBaiViet() {
+    public ThemBaiViet() {
         super();
-        
         this.videoDAO = new VideoDAO();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		Video entity = this.videoDAO.findByID(id);
-		entity.setViews(entity.getViews()+1); //tăng views
-		this.videoDAO.update(entity);
-		User user =(User) request.getSession().getAttribute("user");
-		request.setAttribute("video", entity);
+		User user = (User) request.getSession().getAttribute("user");
 		request.setAttribute("user", user);
-		String views = "/views/chitietbaiviet.jsp";
-		render(request, response, views);
+		request.getRequestDispatcher("/views/thembaiviet.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Video entity = new Video();
+		String anh = request.getParameter("anh");
+		try {
+			BeanUtils.populate(entity, request.getParameterMap());
+			entity.setPoster("./anh/"+anh);
+			entity.setActive(1);
+			entity.setViews(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.videoDAO.store(entity);
+		response.sendRedirect(request.getContextPath()+"/thembaiviet");
 	}
 
 }

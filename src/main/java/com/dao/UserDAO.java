@@ -29,5 +29,14 @@ public class UserDAO {
 		return null;
 	}
 	
+	public User store(User entity) {
+		this.hSession.beginTransaction();
+		Integer id = (Integer) this.hSession.save(entity);
+		this.hSession.getTransaction().commit();
+		
+		entity.setId(id);
+		
+		return entity;
+	}
 	
 }
