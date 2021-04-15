@@ -30,8 +30,9 @@
             </div>
         </div>
         <hr>
+        
 	<div class= "container">
-		<c:forEach items="${ ListVideo }" var="ListVideo">
+	<c:forEach items="${ ListVideo }" var="ListVideo">
 			<div class="container-fluid padding">
 				<div class="row padding">
 					<div class="col-md-12 col-lg-6">
@@ -47,27 +48,15 @@
 						
 					</div>
 				</div>
-				<c:choose>
-					<c:when test="${ user !=  null }">
-						<a href="/ASSM/likevideo?id=${ ListVideo.id }" >
-						<button type="button" class="btn btn-outline">
-							<img alt="" src="./anh/like.png" height="20px">DisLike
-						</button>
+				<a href="/ASSM/disslikebaiviet?id=${ ListVideo.id }" >
+					<button type="button" class="btn btn-outline">
+						<img alt="" src="./anh/like.png" height="20px">DisLike
+					</button>
 							
-						</a>
-						<button type="button"  class="btn btn-primary btn-hover" >
-							<img alt="" src="./anh/share.png" height="20px">Share
-						</button>
-					</c:when>
-					<c:otherwise>
-						<button type="button" class="btn btn-outline" data-toggle="modal" data-target="#acount">
-							<img alt="" src="./anh/like.png" height="20px">Like
-						</button>
-						<button type="button"  class="btn btn-primary btn-hover" data-toggle="modal" data-target="#acount">
-							<img alt="" src="./anh/share.png" height="20px">Share
-						</button>
-					</c:otherwise>
-				</c:choose>
+				</a>
+				<button type="button"  class="btn btn-primary btn-hover" >
+					<img alt="" src="./anh/share.png" height="20px">Share
+				</button>
 			</div>		
 			<hr>	
 		</c:forEach>	

@@ -43,10 +43,13 @@ public class Video implements Serializable{
 	@Column(name="active")
 	private Integer active;
 	
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@Column(name="linkvideo")
+	private String linkvideo;
+	
+	@OneToMany(mappedBy="video", fetch = FetchType.LAZY)
 	private List<Share> share;
 	
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="video", fetch = FetchType.LAZY)
 	private List<Favorite> favorite;
 	
 	public List<Share> getShare() {
@@ -114,6 +117,14 @@ public class Video implements Serializable{
 
 	public void setActive(Integer active) {
 		this.active = active;
+	}
+
+	public String getLinkvideo() {
+		return linkvideo;
+	}
+
+	public void setLinkvideo(String linkvideo) {
+		this.linkvideo = linkvideo;
 	}
 	
 	

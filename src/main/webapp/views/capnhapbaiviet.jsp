@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Thêm bài viết</title>
+<title>Cập nhập bài viết</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
@@ -65,32 +65,49 @@
 	</div>
 </nav>
 <div class="container">
- <form method="POST" action="/ASSM/thembaiviet" >        
+ <form method="POST" action="/ASSM/updatebaiviet?id=${ video.id }" >        
 	
 	 	<div class="col-md-3">
             </div>
             <div class="col-md-9">
-    	        <h1 class="">Thêm bài viết</h1>
+    	        <h1 class="">Cập nhập bài viết bài viết</h1>
             </div>
         <hr>
          
         <div class="form-group">
 		    <label for="tieude">Tiêu đề</label>
-		    <input  type="text"  class="form-control" id="tieude" aria-describedby="emailHelp" placeholder="Nhập tiêu đề. . . " name="title">
+		    <input  type="text" value="${ video.title }" class="form-control" id="tieude"  name="title">
 		 </div>
 		<div class="form-group">
 		   	<label for="exampleFormControlTextarea1">Nội dung</label>
-		    <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung. . ." name="description"></textarea>
+		    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  name="description">${ video.description }</textarea>
 		 </div>
 		 <div class="from-group">
 		 	<label >Poster</label>
-		 	<input class="form-control" type="file" name="anh">
+		 	<input  class="form-control" type="file" name="anh">
 		 </div>
 		 <br>
-		 <button type="submit" class="btn btn-primary btn-hover" >
-				Thêm
+		 <button type="button" class="btn btn-primary btn-hover" data-toggle="modal"  data-target="#update" >
+				Update
 		</button>
-	
+	<div class="modal fade" id="update" role="dialog" aria-hidden="true">
+	    <div class="modal-dialog modal-dialog-centered">
+	        <div class="modal-content">
+	        
+	            <div class="modal-header">
+	                <h5 class="modal-title">Bạn muốn cập nhập bài viết ?</h5>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+	                 <button type="submit" class="btn btn-primary" >Tiếp tục</button>
+	            </div>
+	            
+	        </div>
+	    </div>
+	</div>
 </form>
 </div>
 <div class="container-fluid padding">	

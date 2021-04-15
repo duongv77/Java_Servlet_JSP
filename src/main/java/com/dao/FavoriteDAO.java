@@ -2,11 +2,13 @@ package com.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 
 import com.entity.Favorite;
+import com.entity.User;
 import com.entity.Video;
 import com.utils.HibenateUtil;
 
@@ -31,5 +33,24 @@ public class FavoriteDAO {
 		return entity;
 	}
 	
+	public void delete(int userID, int videoID) {
+		this.hSession.clear();
+		String hql = "SELECT entity FROM Favorite entity WHERE entity.user.id = :user AND entity.video.id = :video";
+		Query query =  this.hSession.createNamedQuery(hql);
+		query.setParameter("user", userID);
+		query.setParameter("video", videoID);
+		System.out.println(userID+"hehe"+videoID);
+//		Favorite favorite =(Favorite) query.getSingleResult();
+//		System.out.println(favorite.getId());
+//		try {
+//			this.hSession.beginTransaction();
+//			this.hSession.delete(favorite);
+//			this.hSession.getTransaction().commit();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			this.hSession.getTransaction().rollback();
+//			throw e;
+//		}
+	}
 	
 }

@@ -56,4 +56,17 @@ public class VideoDAO {
 //		Query query = this.hSession.createNamedQuery(hql);
 //		int sl =query.get;
 //	}
+	
+	public void delete(Video entity) {
+		this.hSession.clear();
+		try {
+			this.hSession.beginTransaction();
+			this.hSession.delete(entity);
+			this.hSession.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();// TODO: handle exception
+			this.hSession.getTransaction().rollback();
+			throw e;
+		}
+	}
 }

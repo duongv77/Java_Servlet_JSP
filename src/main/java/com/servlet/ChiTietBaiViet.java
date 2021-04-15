@@ -11,6 +11,7 @@ import com.dao.VideoDAO;
 import com.entity.User;
 import com.entity.Video;
 import com.layout.BaseLayOut;
+import com.role.RoleConst;
 
 /**
  * Servlet implementation class XemCT
@@ -35,6 +36,7 @@ public class ChiTietBaiViet extends BaseLayOut {
 		User user =(User) request.getSession().getAttribute("user");
 		request.setAttribute("video", entity);
 		request.setAttribute("user", user);
+		request.setAttribute("ADMIN", RoleConst.ROLE_ADMIN);
 		String views = "/views/chitietbaiviet.jsp";
 		render(request, response, views);
 	}
