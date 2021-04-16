@@ -1,5 +1,7 @@
 	package com.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -48,6 +50,31 @@ public class UserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.hSession.getTransaction().rollback();
+		}
+	}
+	
+	public List<User> fullUser() {
+		String hql = "FROM User"; //Truy vấn hql
+		Query query =  this.hSession.createQuery(hql);
+		List<User> ListUser = query.getResultList();
+		return ListUser;
+	}
+	
+	public User findByID(int id) {
+		User entity = this.hSession.get(User.class, id); //truy vấn trả về id cần tìm
+		return entity;
+	}
+	
+	public void delete(User entity) {
+		this.hSession.clear();
+		try {
+			this.hSession.beginTransaction();
+			this.hSession.delete(entity);
+			this.hSession.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();// TODO: handle exception
+			this.hSession.getTransaction().rollback();
+			throw e;
 		}
 	}
 	

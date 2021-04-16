@@ -51,11 +51,6 @@ public class VideoDAO {
 		
 		return entity;
 	}
-//	public int slVideo() {
-//		String hql = "SELECT count(obj) FROM Video obj";
-//		Query query = this.hSession.createNamedQuery(hql);
-//		int sl =query.get;
-//	}
 	
 	public void delete(Video entity) {
 		this.hSession.clear();

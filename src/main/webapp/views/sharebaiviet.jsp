@@ -35,6 +35,9 @@
 			<ul class="navbar-nav ml-auto">
 				<c:if test="${ user.admin==1 }">
 					<li class="nav-item">
+						<a class="nav-link active" href="/ASSM/admin">Quản lí</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link active" href="/ASSM/thembaiviet">Thêm bài viết</a>
 					</li>
 				</c:if>
