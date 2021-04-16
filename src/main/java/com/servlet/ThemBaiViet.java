@@ -1,10 +1,15 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -12,7 +17,7 @@ import com.dao.VideoDAO;
 import com.entity.User;
 import com.entity.Video;
 import com.layout.BaseLayOut;
-
+@MultipartConfig
 @WebServlet("/thembaiviet")
 public class ThemBaiViet extends BaseLayOut {
 	private VideoDAO videoDAO;
@@ -32,14 +37,27 @@ public class ThemBaiViet extends BaseLayOut {
 		request.setCharacterEncoding("utf-8");
 		
 		Video entity = new Video();
-		String anh = request.getParameter("anh");
+		
 		try {
+			Part part = request.getPart("anh");
+			
+			String realPath = request.getServletContext().getRealPath("/imgs");
+			String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+			
+			if(!Files.exists(Path.of(realPath))) {
+				Files.createDirectory(Path.of(realPath));
+			}
+			
+			part.write(realPath+"/"+fileName);
+			
 			BeanUtils.populate(entity, request.getParameterMap());
-			entity.setPoster("./anh/"+anh);
+			entity.setPoster(fileName);
 			entity.setActive(1);
 			entity.setViews(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("checkForm", 1);
+			request.getRequestDispatcher("/views/thembaiviet.jsp").forward(request, response);
+			return;
 		}
 		this.videoDAO.store(entity);
 		response.sendRedirect(request.getContextPath()+"/thembaiviet");

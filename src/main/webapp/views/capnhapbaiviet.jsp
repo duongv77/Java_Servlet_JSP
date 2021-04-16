@@ -21,7 +21,7 @@
 	<div class="container-fluid">
 		<a class="navbar-branch" href="#" type="button" data-toggle="collapse" 
 			data-target="#navbarResponsive2">
-			<img alt="" src="${ user.avatar }" height="40">
+			<img alt="" src="imgs/${ user.avatar }" height="40">
 			 
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" 
@@ -65,7 +65,7 @@
 	</div>
 </nav>
 <div class="container">
- <form method="POST" action="/ASSM/updatebaiviet?id=${ video.id }" >        
+ <form method="POST" action="/ASSM/updatebaiviet?id=${ video.id }" enctype="multipart/form-data" >        
 	
 	 	<div class="col-md-3">
             </div>
@@ -85,6 +85,10 @@
 		 <div class="from-group">
 		 	<label >Poster</label>
 		 	<input  class="form-control" type="file" name="anh">
+		 </div>
+		 <div class="form-group">
+		   	<label for="exampleFormControlTextarea1">Link nhúng video</label>
+		    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung. . ." name="linkvideo">${ video.linkvideo }</textarea>
 		 </div>
 		 <br>
 		 <button type="button" class="btn btn-primary btn-hover" data-toggle="modal"  data-target="#update" >

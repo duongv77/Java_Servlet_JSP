@@ -11,15 +11,18 @@
         <div class="container-fluid padding m-5">
             <div class="row welcome text-center ">
                 <div class="mx-auto">
-                    <img src="${ user.avatar }" alt="avt" height="200px">
+                    <img src="imgs/${ user.avatar }" alt="avt" height="200px">
                 </div>
                 <div class="col-12">
                     <h1 class="display-4">${ user.fullname }</h1>
                 </div>
                 <!-- Horizontal Rule -->
-                <hr> 
-                
+                <div class="row mx-auto">
+                	<a class="btn btn-outline" href="/ASSM/thongtinuser">Cập nhập thông tin</a>
+                </div>
+                 
             </div>
+            <hr>
         </div>
         <div class="container row">
             <div class="col-md-3">
@@ -43,7 +46,7 @@
 					</div>
 					<div class="col-lg-6">
 					<a href="/ASSM/chitietbaiviet?id=${ ListVideo.id }">
-						<img src=${ ListVideo.poster } class="img-fluid">
+						<img src="imgs/${ ListVideo.poster }" class="img-fluid">
 					</a>
 						
 					</div>

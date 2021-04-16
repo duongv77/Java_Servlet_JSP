@@ -36,21 +36,21 @@ public class FavoriteDAO {
 	public void delete(int userID, int videoID) {
 		this.hSession.clear();
 		String hql = "SELECT entity FROM Favorite entity WHERE entity.user.id = :user AND entity.video.id = :video";
-		Query query =  this.hSession.createNamedQuery(hql);
+		Query query =  this.hSession.createQuery(hql);
 		query.setParameter("user", userID);
 		query.setParameter("video", videoID);
 		System.out.println(userID+"hehe"+videoID);
-//		Favorite favorite =(Favorite) query.getSingleResult();
-//		System.out.println(favorite.getId());
-//		try {
-//			this.hSession.beginTransaction();
-//			this.hSession.delete(favorite);
-//			this.hSession.getTransaction().commit();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			this.hSession.getTransaction().rollback();
-//			throw e;
-//		}
+		Favorite favorite =(Favorite) query.getSingleResult();
+		System.out.println(favorite.getId());
+		try {
+			this.hSession.beginTransaction();
+			this.hSession.delete(favorite);
+			this.hSession.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.hSession.getTransaction().rollback();
+			throw e;
+		}
 	}
 	
 }

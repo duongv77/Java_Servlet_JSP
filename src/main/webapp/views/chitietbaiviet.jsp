@@ -90,11 +90,9 @@
 					            <div class="modal-footer">
 					                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
 					                <a href="/ASSM/chitietbaiviet/xoabaiviet?id=${ video.id }">
-										<button type="submit" class="btn btn-primary" >Tiếp tục</button>
+										<button type="button" class="btn btn-primary" >Tiếp tục</button>
 									</a>
-					                 
 					            </div>
-					            
 					        </div>
 					    </div>
 					</div>

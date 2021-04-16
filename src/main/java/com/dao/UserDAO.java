@@ -1,4 +1,4 @@
-package com.dao;
+	package com.dao;
 
 import javax.persistence.Query;
 
@@ -37,6 +37,18 @@ public class UserDAO {
 		entity.setId(id);
 		
 		return entity;
+	}
+	
+	public void update(User user) {
+		try {
+			this.hSession.clear();
+			this.hSession.beginTransaction();
+			this.hSession.update(user);
+			this.hSession.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.hSession.getTransaction().rollback();
+		}
 	}
 	
 }

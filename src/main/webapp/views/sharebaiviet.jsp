@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
-<!-- Import Boostrap css, js, font awesome here -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
@@ -17,10 +16,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<link href="./css/style.css" rel="stylesheet">
 	<script src="https://use.fontawesome.com/036b4f2931.js"></script>
+<title>Email</title>
 </head>
 <body>
-<form action="POST" action="/home">
-	
+
 <nav class="navbar navbar-expand-md navbar-light sticky-top">
 	<div class="container-fluid">
 		<a class="navbar-branch" href="#" type="button" data-toggle="collapse" 
@@ -69,10 +68,38 @@
 	</div>
 </nav>
 
-<div >
-	<jsp:include page="${ views }" />
-</div>
-
+	<div class="container" style="margin-top: 10px;">
+		<div class="row"
+			style="border: 1px darkgrey solid; border-radius: 10px; width: 50%; margin: 0 auto; padding: 20px;">
+			<div class="col-sm-12">
+				<h2 class="myclass">Information</h2>
+				<form action="/ASSM/sendmail" method="post">
+					<div class="form-group">
+						<div class="form-group">
+							<label>Người gửi:</label> 
+							<input type="text"
+							class="form-control" name="nguoigui" placeholder="Enter Email">
+						</div>
+						<label>To:</label> 
+						<input type="text"
+						class="form-control" name="nguoinhan" placeholder="Enter Email">
+					</div>
+					
+					<div class="form-group">
+						<label>Subject:</label> 
+						<input type="text" class="form-control" name="tieude" placeholder="Enter Subject">
+					</div>
+					<div class="form-group">
+						<label for="content">Content:</label>
+						<textarea class="form-control" rows="3"  name="noidung">${ video.linkvideo }</textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Send</button>
+					<button type="reset" class="btn btn-primary">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
 <div class="container-fluid padding">	
 	<div class="row text-center padding">
@@ -144,6 +171,5 @@
         </div>
     </div>
 </div>
-</form>
 </body>
 </html>

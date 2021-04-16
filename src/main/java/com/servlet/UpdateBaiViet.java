@@ -1,11 +1,16 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -15,6 +20,7 @@ import com.entity.Video;
 import com.layout.BaseLayOut;
 import com.role.RoleConst;
 
+@MultipartConfig
 @WebServlet("/updatebaiviet")
 public class UpdateBaiViet extends BaseLayOut {
 	private VideoDAO videoDAO;
@@ -42,11 +48,26 @@ public class UpdateBaiViet extends BaseLayOut {
 		Video entity = new Video();
 		int id = Integer.parseInt(request.getParameter("id"));
 		Video entityPre = this.videoDAO.findByID(id);
+		
+		
 		try {
 			BeanUtils.populate(entity, request.getParameterMap());
 			if(request.getParameter("anh")=="") {
 				entity.setPoster(entityPre.getPoster());
+			}else {
+				Part part = request.getPart("anh");
+				
+				String realPath = request.getServletContext().getRealPath("/imgs");
+				String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+				
+				if(!Files.exists(Path.of(realPath))) {
+					Files.createDirectory(Path.of(realPath));
+				}
+				
+				part.write(realPath+"/"+fileName);
+				entity.setPoster(fileName);
 			}
+			
 			entity.setViews(entityPre.getViews());
 			entity.setActive(entityPre.getActive());
 			entity.setId(entityPre.getId());
@@ -54,7 +75,6 @@ public class UpdateBaiViet extends BaseLayOut {
 			e.printStackTrace();
 		}
 		this.videoDAO.update(entity);
-		System.out.println(entityPre.getPoster());
 		User user =(User) request.getSession().getAttribute("user");
 		request.setAttribute("updateTC", 1);
 		request.setAttribute("video", entity);

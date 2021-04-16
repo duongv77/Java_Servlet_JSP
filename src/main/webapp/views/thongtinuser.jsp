@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-    
+ <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
-<!-- Import Boostrap css, js, font awesome here -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
+<title>Đổi thông tin cá nhân</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">       
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
@@ -16,11 +14,9 @@
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<link href="./css/style.css" rel="stylesheet">
-	<script src="https://use.fontawesome.com/036b4f2931.js"></script>
 </head>
 <body>
-<form action="POST" action="/home">
-	
+
 <nav class="navbar navbar-expand-md navbar-light sticky-top">
 	<div class="container-fluid">
 		<a class="navbar-branch" href="#" type="button" data-toggle="collapse" 
@@ -56,7 +52,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="nav-item">
-							<a class="nav-link" href="#" data-toggle="modal" data-target="#dangxuat">
+							<a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
 		                         Đăng xuất
 		                    </a>
 						</li>
@@ -68,12 +64,57 @@
 		</div>
 	</div>
 </nav>
-
-<div >
-	<jsp:include page="${ views }" />
+<div class="container">
+ <form method="POST" action="/ASSM/thongtinuser" enctype="multipart/form-data">        
+	
+	 	<div class="col-md-3">
+            </div>
+            <div class="col-md-9">
+    	        <h1 class="">Thay đổi thông tin cá nhân</h1>
+            </div>
+        <hr>
+         
+        <div class="form-group">
+		    <label for="fullname">Họ và tên</label>
+		    <input  type="text" value="${ user.fullname }" class="form-control" id="fullname" name="fullname" aria-describedby="emailHelp" placeholder="Nhập họ tên. . . " >
+		 </div>
+		<div class="form-group">
+		<label for="password">Mật khẩu</label>
+             <input type="password" value="${ user.password }" class="form-control form-control-user" id="password" name="password" placeholder="Nhập mật khẩu...">
+         </div>
+		 <div class="from-group">
+		 	<label >Ảnh đại diện</label>
+		 	<input class="form-control" type="file" name="avatar">
+		 </div>
+		 <br>
+		 <button type="submit" class="btn btn-outline btn-hover" >
+				Thay đổi
+		</button>
+		<div class="modal fade" id="thaydoiuser" role="dialog" aria-hidden="true">
+		    <div class="modal-dialog modal-dialog-centered">
+		        <div class="modal-content">
+		        
+		            <div class="modal-header">
+		                <h5 class="modal-title">Xác nhận thay đổi?</h5>
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                    <span aria-hidden="true">&times;</span>
+		                </button>
+		            </div>
+		            
+		            <div class="modal-body">
+		                Sau khi thay đổi sẽ không thể khôi phục lại.Bạn vẫn muốn tiếp tục ??
+		            </div>
+		            
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+		                 <button type="submit" class="btn btn-primary" >Tiếp tục</button>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>
+</form>
 </div>
-
-
 <div class="container-fluid padding">	
 	<div class="row text-center padding">
 		<div class="col-12">
@@ -121,7 +162,7 @@
 		</div>
 	</div>
 </footer>
-<div class="modal fade" id="dangxuat" role="dialog" aria-hidden="true">
+<div class="modal fade" id="logoutModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         
@@ -144,6 +185,8 @@
         </div>
     </div>
 </div>
-</form>
+
+
+
 </body>
 </html>

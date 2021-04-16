@@ -62,7 +62,7 @@
 					</div>
 					<div class="col-lg-6">
 					<a href="/ASSM/chitietbaiviet?id=${ ListVideo.id }">
-						<img src=${ ListVideo.poster } class="img-fluid">
+						<img src="imgs/${ ListVideo.poster }" class="img-fluid">
 					</a>
 						
 					</div>
@@ -78,9 +78,11 @@
 								</button>
 									
 								</a>
-								<button type="button"  class="btn btn-primary btn-hover" >
-									<img alt="" src="./anh/share.png" height="20px">Share
-								</button>
+								<a href="/ASSM/sendmail?id=${ ListVideo.id }">
+									<button type="button"  class="btn btn-primary btn-hover">
+										<img alt="" src="./anh/share.png" height="20px">Share
+									</button>
+								</a>
 							</c:when>
 							<c:otherwise>
 								<button type="button" class="btn btn-outline" data-toggle="modal" data-target="#acount">

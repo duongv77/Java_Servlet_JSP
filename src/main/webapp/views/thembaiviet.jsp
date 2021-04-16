@@ -21,7 +21,7 @@
 	<div class="container-fluid">
 		<a class="navbar-branch" href="#" type="button" data-toggle="collapse" 
 			data-target="#navbarResponsive2">
-			<img alt="" src="${ user.avatar }" height="40">
+			<img alt="" src="imgs/${ user.avatar }" height="40">
 			 
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" 
@@ -65,7 +65,7 @@
 	</div>
 </nav>
 <div class="container">
- <form method="POST" action="/ASSM/thembaiviet" >        
+ <form method="POST" action="/ASSM/thembaiviet" enctype="multipart/form-data">        
 	
 	 	<div class="col-md-3">
             </div>
@@ -73,18 +73,26 @@
     	        <h1 class="">Thêm bài viết</h1>
             </div>
         <hr>
-         
+         <c:if test="${ checkForm == 1 }">
+         	<div class="alert alert-danger" role="alert">
+			  Không được để trống !
+			</div>
+         </c:if>
         <div class="form-group">
 		    <label for="tieude">Tiêu đề</label>
 		    <input  type="text"  class="form-control" id="tieude" aria-describedby="emailHelp" placeholder="Nhập tiêu đề. . . " name="title">
 		 </div>
 		<div class="form-group">
 		   	<label for="exampleFormControlTextarea1">Nội dung</label>
-		    <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung. . ." name="description"></textarea>
+		    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung. . ." name="description"></textarea>
 		 </div>
 		 <div class="from-group">
 		 	<label >Poster</label>
 		 	<input class="form-control" type="file" name="anh">
+		 </div>
+		 <div class="form-group">
+		   	<label for="exampleFormControlTextarea1">Link nhúng video</label>
+		    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Nhập nội dung. . ." name="linkvideo"></textarea>
 		 </div>
 		 <br>
 		 <button type="submit" class="btn btn-primary btn-hover" >
