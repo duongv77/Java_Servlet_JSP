@@ -1,15 +1,11 @@
 package com.dao;
 
-import java.util.List;
 
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 
 import com.entity.Favorite;
-import com.entity.User;
-import com.entity.Video;
 import com.utils.HibenateUtil;
 
 public class FavoriteDAO {

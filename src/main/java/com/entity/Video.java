@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @NamedQueries(
 		@NamedQuery(
 				name="OderVideoDESC",
-				query="SELECT obj FROM Video obj ORDER BY obj.views DESC"
+				query="SELECT obj FROM Video obj WHERE obj.active = 1 ORDER BY obj.views DESC"
 		)
 )
 

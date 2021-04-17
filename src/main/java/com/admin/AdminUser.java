@@ -26,7 +26,6 @@ public class AdminUser extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user =(User) request.getSession().getAttribute("user");
-		System.out.println(userDAO.fullUser());
 		request.setAttribute("listUser", userDAO.fullUser());
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("/views/admin/adminuser.jsp").forward(request, response);

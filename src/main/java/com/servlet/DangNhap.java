@@ -27,7 +27,6 @@ public class DangNhap extends BaseLayOut   {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
 	}
 

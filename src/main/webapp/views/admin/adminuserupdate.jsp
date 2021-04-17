@@ -35,11 +35,11 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item active"><a class="nav-link"
-					href="/ASSM/admin">ADMIN</a></li>
+					href="/ASSM/admin/home">ADMIN</a></li>
 				<li class="nav-item home"><a class="nav-link"
 					href="/ASSM/admin/user">User</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="ASSM/admin/baiviet">Bài viết</a></li>
+					href="/ASSM/admin/baiviet">Bài viết</a></li>
 				<li class="nav-item"><a class="nav-link" href="/ASSM/home">Home</a>
 				</li>
 			</ul>
@@ -67,7 +67,7 @@
 			</div>
 		</div>
 		<div class="col-xl-8 col-md-7 mb-12">
-			<form action="/ASSM//admin/user/update">
+			<form method="POST" action="/ASSM/admin/user/update?id=${ entityUser.id }" enctype="multipart/form-data" >
 
 				<div class="col-md-3"></div>
 				<div class="col-md-9">
@@ -87,11 +87,18 @@
 						id="password" name="password" placeholder="Nhập mật khẩu...">
 				</div>
 				<div class="from-group">
-					<label>Ảnh đại diện</label> <input class="form-control" type="file"
-						name="avatar">
+					<label>Ảnh đại diện</label> 
+					<input class="form-control" type="file" name="avatar">
 				</div>
+				<div class="mt-3">
+						<label for="role" class="form-label">Role</label>
+						 <select class="form-select" name="admin">
+							<option ${ entityUser.admin==1?"selected" : "" } value="1">Admin</option>
+							<option ${ entityUser.admin==0?"selected" : "" } value="0">User</option>
+						</select>
+					</div>
 				<br>
-				<button type="submit" class="btn btn-outline btn-hover">
+				<button type="button" class="btn btn-outline btn-hover" data-toggle="modal" data-target="#thaydoiuser">
 					Thay đổi</button>
 				<div class="modal fade" id="thaydoiuser" role="dialog"
 					aria-hidden="true">

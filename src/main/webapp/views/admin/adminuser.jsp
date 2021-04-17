@@ -25,13 +25,13 @@
 	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	    <li class="nav-item active">
-	        <a class="nav-link" href="/ASSM/admin">ADMIN</a>
+	        <a class="nav-link" href="/ASSM/admin/home">ADMIN</a>
 	      </li>
 	  	  <li class="nav-item home">
 	        <a class="nav-link" href="/ASSM/admin/user">User</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="ASSM/admin/baiviet">Bài viết</a>
+	        <a class="nav-link" href="/ASSM/admin/baiviet">Bài viết</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="/ASSM/home">Home</a>
@@ -44,8 +44,8 @@
 	  </div>
 	</nav>
 	<br>
-	<div class="row">
-		<div class="col-xl-3 col-md-4 mb-4">
+	<div class = "col-12">
+		<div class="col-xl-3 col-md-3 mb-3">
 	        <div class="card border-left-primary shadow h-100 py-2">
 				<div class="card-body">
 	                  <div class="row no-gutters align-items-center">
@@ -71,41 +71,48 @@
 		        </div>
 	       </c:if>
 	   	</div>
-   		<div class="col-xl-9 col-md-8">
-   			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">Id</th>
-			      <th scope="col">Tên</th>
-			      <th scope="col">Email</th>
-			      <th scope="col">Ảnh đại diện</th>
-			      <th scope="col"></th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  <c:forEach items="${ listUser }" var="listUser">
-			  	<tr>
-			      <th scope="row">${ listUser.id }</th>
-			      <td>${ listUser.fullname }</td>
-			      <td>${ listUser.email }</td>
-			      <td>${ listUser.avatar }</td>
-			      <td>
-			      	<a href="/ASSM/admin/user/update?id=${ listUser.id }">
-				      	<button type="button" class="btn btn-success">
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-						</button>
-			      	</a>
-					<a href="/ASSM/admin/user/delete?id=${ listUser.id }">
-						<button type="button" class="btn btn-danger">
-							<i class="fa fa-trash-o" aria-hidden="true"></i>
-						</button>
-					</a>
-				 </td>
-			    </tr>
-			  </c:forEach>
-			    
-			  </tbody>
-			</table>
+   		<div class="row">
+   			<div class="col-1"></div>
+   			<div class="col-10">
+   				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Id</th>
+				      <th scope="col">Tên</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Loại Acount</th>
+				      <th scope="col">Ảnh đại diện</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  <c:forEach items="${ listUser }" var="listUser">
+				  	<tr>
+				      <th scope="row">${ listUser.id }</th>
+				      <td>${ listUser.fullname }</td>
+				      <td>${ listUser.email }</td>
+				      <td>${ listUser.admin==1? "Admin" : "User" }</td>
+				      <td>${ listUser.avatar }</td>
+				      <td>
+				      	<div class="row">
+				      		<a href="/ASSM/admin/user/update?id=${ listUser.id }">
+						      	<button type="button" class="btn btn-success">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</button>
+					      	</a>
+							<a class="mx-auto" href="/ASSM/admin/user/delete?id=${ listUser.id }">
+								<button type="button" class="btn btn-danger">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</button>
+							</a>
+				      	</div>
+					 </td>
+				    </tr>
+				  </c:forEach>
+				    
+				  </tbody>
+				</table>
+   			</div>
    		</div>
 	</div>
 </body>

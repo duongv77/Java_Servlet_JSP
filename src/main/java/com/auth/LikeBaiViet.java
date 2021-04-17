@@ -28,11 +28,15 @@ public class LikeBaiViet extends BaseLayOut {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		
 		Video video = this.videoDAO.findByID(id);
 		Favorite entity = new Favorite();
+		
 		User user =(User) request.getSession().getAttribute("user");
+		
 		long millis=System.currentTimeMillis();  
 		java.sql.Date date=new java.sql.Date(millis);  
+		
 		try {
 			entity.setUser(user);
 			entity.setVideo(video);

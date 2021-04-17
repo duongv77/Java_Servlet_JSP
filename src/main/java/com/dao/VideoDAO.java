@@ -64,4 +64,11 @@ public class VideoDAO {
 			throw e;
 		}
 	}
+	
+	public List<Video> fullVideo() {
+		String hql = "FROM Video";
+		Query query = this.hSession.createQuery(hql);
+		List<Video> listVideo = query.getResultList();
+		return listVideo;
+	}
 }

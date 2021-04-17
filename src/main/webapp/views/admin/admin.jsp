@@ -25,13 +25,13 @@
 	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	    <li class="nav-item active">
-	        <a class="nav-link" href="/ASSM/admin">ADMIN</a>
+	        <a class="nav-link" href="/ASSM/admin/home">ADMIN</a>
 	      </li>
 	  	  <li class="nav-item home">
 	        <a class="nav-link" href="/ASSM/admin/user">User</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="ASSM/admin/baiviet">Bài viết</a>
+	        <a class="nav-link" href="/ASSM/admin/baiviet">Bài viết</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="/ASSM/home">Home</a>
@@ -45,7 +45,7 @@
 	</nav>
 	<br>
 	<div class="row">
-		<div class="col-xl-2 col-md-3 mb-4">
+		<div class="col-xl-3 col-md-3 mb-3">
 	        <div class="card border-left-primary shadow h-100 py-2">
 				<div class="card-body">
 	                  <div class="row no-gutters align-items-center">
@@ -58,9 +58,6 @@
 	                   </div>
 	              </div>
 	       </div>
-   		</div>
-   		<div class="col-xl-10 col-md-9">
-   			<jsp:include page="${ views }"></jsp:include>
    		</div>
 	</div>
 </body>
