@@ -78,4 +78,28 @@ public class UserDAO {
 		}
 	}
 	
+	public User kiemTraUser(String email) {
+		String hql = "SELECT obj FROM User obj WHERE obj.email = :email";
+		Query query = this.hSession.createQuery(hql);
+		query.setParameter("email", email);
+		try {
+			User entity = (User) query.getSingleResult();
+			return entity;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int setMK(String email) {
+		try {
+			this.kiemTraUser(email).setPassword("1234");
+			update(this.kiemTraUser(email));
+			return 1;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+	
 }

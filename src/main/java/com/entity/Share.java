@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="videos") 
+@Table(name="shares") 
 public class Share implements Serializable{
 	@Id
 	@Column(name="id")

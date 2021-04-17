@@ -57,6 +57,8 @@ public class SendMail extends BaseLayOut {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 		
 		Properties props = new Properties();
 		props.setProperty("mail.smtp.auth", "true");
@@ -71,18 +73,16 @@ public class SendMail extends BaseLayOut {
 			return new PasswordAuthentication(username, password);
 		}
 		});
-		String nguoiGui = request.getParameter("nguoigui");
 		String nguoiNhan = request.getParameter("nguoinhan");
-		String tieuDe  = request.getParameter("tieude");
-		String noiDung = request.getParameter("noidung");
 		
 		MimeMessage message = new MimeMessage(session);
+		
 		try {
 			
-			message.setFrom(new InternetAddress(nguoiGui));
+			message.setFrom(new InternetAddress("dd22042001@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, nguoiNhan);
-			message.setSubject(tieuDe, "utf-8");
-			message.setText( noiDung, "utf-8","html");
+			message.setSubject("Dưỡng Đẹp Trai", "utf-8");
+			message.setText( "Dưỡng Đẹp Trai code không bug", "utf-8","html");
 			message.setReplyTo(message.getFrom()); 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -92,9 +92,11 @@ public class SendMail extends BaseLayOut {
 	
 		User user = (User) request.getSession().getAttribute("user");
 		
-		System.out.println(idVideo);
 		Video video = this.videoDAO.findByID(idVideo);
+		System.out.println("user" + user.getId());
+		System.out.println("video" + video.getId());
 		Share entity = new Share();
+		
 		long millis=System.currentTimeMillis();  
 		java.sql.Date date=new java.sql.Date(millis);  
 		
@@ -103,10 +105,16 @@ public class SendMail extends BaseLayOut {
 			entity.setUser(user);
 			entity.setVideo(video);
 			entity.setEmail(nguoiNhan);
+			
+			System.out.println("email"+entity.getEmail());
+			System.out.println("date"+entity.getSharedate());
+			System.out.println("user id"+entity.getUser().getId());
+			System.out.println("id video"+entity.getVideo().getId());
+			this.shareDAO.store(entity);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-		this.shareDAO.store(entity);
+		
 		response.sendRedirect(request.getContextPath()+"/home");
 	}
 	

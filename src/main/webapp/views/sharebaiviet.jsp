@@ -78,31 +78,31 @@
 				<h2 class="myclass">Information</h2>
 				<form action="/ASSM/sendmail" method="post">
 					<div class="form-group">
-						<div class="form-group">
-							<label>Người gửi:</label> 
-							<input type="text"
-							class="form-control" name="nguoigui" placeholder="Enter Email">
-						</div>
 						<label>To:</label> 
 						<input type="text"
 						class="form-control" name="nguoinhan" placeholder="Enter Email">
 					</div>
 					
-					<div class="form-group">
-						<label>Subject:</label> 
-						<input type="text" class="form-control" name="tieude" placeholder="Enter Subject">
-					</div>
-					<div class="form-group">
-						<label for="content">Content:</label>
-						<textarea class="form-control" rows="3"  name="noidung">${ video.linkvideo }</textarea>
-					</div>
 					<button type="submit" class="btn btn-primary">Send</button>
 					<button type="reset" class="btn btn-primary">Cancel</button>
 				</form>
 			</div>
 		</div>
 	</div>
-	
+	<div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	</div>
 
 <div class="container-fluid padding">	
 	<div class="row text-center padding">

@@ -37,6 +37,12 @@ public class DangNhap extends BaseLayOut   {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		User entity = this.userDAO.login(email, password);
+		if(email=="" || password=="") {
+			int checkForm = 1;
+			request.setAttribute("checkForm", checkForm);
+			request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
+			return;
+		}
 		if(entity ==  null) {
 			request.setAttribute("error", 1);
 			request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
@@ -46,5 +52,6 @@ public class DangNhap extends BaseLayOut   {
 			response.sendRedirect(request.getContextPath()+ "/home");
 		}
 	}
+	
 
 }
