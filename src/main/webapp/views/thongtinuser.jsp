@@ -68,7 +68,7 @@
 	</div>
 </nav>
 <div class="container">
- <form method="POST" action="/ASSM/thongtinuser" enctype="multipart/form-data">        
+ <form method="POST" action="/ASSM/thongtinuser?id=${ user.id }" enctype="multipart/form-data">        
 	
 	 	<div class="col-md-3">
             </div>
@@ -90,7 +90,7 @@
 		 	<input class="form-control" type="file" name="avatar">
 		 </div>
 		 <br>
-		 <button type="submit" class="btn btn-outline btn-hover" >
+		 <button type="button" class="btn btn-outline btn-hover" data-toggle="modal" data-target="#thaydoiuser">
 				Thay đổi
 		</button>
 		<div class="modal fade" id="thaydoiuser" role="dialog" aria-hidden="true">

@@ -68,7 +68,7 @@ public class SendMail extends BaseLayOut {
 		
 		Session session = Session.getInstance(props,new Authenticator() {
 		protected PasswordAuthentication getPasswordAuthentication() {
-			String username = "dd22042001@gmail.com";
+			String username = "duongdeptrai.0hutthuoc@gmail.com";
 			String password = "22042001d";
 			return new PasswordAuthentication(username, password);
 		}
@@ -79,7 +79,7 @@ public class SendMail extends BaseLayOut {
 		
 		try {
 			
-			message.setFrom(new InternetAddress("dd22042001@gmail.com"));
+			message.setFrom(new InternetAddress("duongdeptrai.0hutthuoc@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, nguoiNhan);
 			message.setSubject("Dưỡng Đẹp Trai", "utf-8");
 			message.setText( "Dưỡng Đẹp Trai code không bug", "utf-8","html");

@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import com.entity.User;
 /**
  * Servlet implementation class ThongTinUser
  */
+@MultipartConfig
 @WebServlet("/thongtinuser")
 public class ThongTinUser extends HttpServlet {
 	private UserDAO userDAO;
@@ -37,16 +39,17 @@ public class ThongTinUser extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		
-		User user = (User) request.getSession().getAttribute("user");
-		
 		User entity = new User();
+		int id =Integer.parseInt(request.getParameter("id"));
+		User entityPre = this.userDAO.findByID(id);
+		
 		try {
-			BeanUtils.populate(entity, request.getParameterMap());
-			entity.setAdmin(user.getAdmin());
-			entity.setEmail(user.getEmail());
-			if(entity.getAvatar()==null) {
-				entity.setAvatar(user.getAvatar());
+			if(request.getPart("avatar").getSubmittedFileName()=="") {
+				System.out.println("if");
+				entity.setAvatar(entityPre.getAvatar());
 			}else {
+				System.out.println("else");
+				
 				Part part = request.getPart("avatar");
 				
 				String realPath = request.getServletContext().getRealPath("/imgs");
@@ -59,10 +62,13 @@ public class ThongTinUser extends HttpServlet {
 				part.write(realPath+"/"+fileName);
 				entity.setAvatar(fileName);
 			}
+			BeanUtils.populate(entity, request.getParameterMap());
+			entity.setEmail(entityPre.getEmail());
+			entity.setAdmin(entityPre.getAdmin());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(user.getFullname());
+		
 		this.userDAO.update(entity);
 		response.sendRedirect(request.getContextPath()+"/yeuthich");
 	}

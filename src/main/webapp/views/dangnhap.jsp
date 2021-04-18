@@ -35,7 +35,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <c:if test="${ check == 1  }">
+                                    <c:if test="${ checkCreateUserSuccess == 1  }">
                                     	<div class="alert alert-success" role="alert">
 										  Đăng kí thành công !
 										</div>

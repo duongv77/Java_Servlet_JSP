@@ -1,6 +1,7 @@
 	package com.dao;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Query;
 
@@ -91,15 +92,18 @@ public class UserDAO {
 		return null;
 	}
 	
-	public int setMK(String email) {
+	public String setMK(String email) {
 		try {
-			this.kiemTraUser(email).setPassword("1234");
+			Random generator = new Random();
+			String password = generator.nextInt(23456)+"";
+			User user = this.kiemTraUser(email);
+			user.setPassword(password);
 			update(this.kiemTraUser(email));
-			return 1;
+			return password;
 		} catch (Exception e) {
-			// TODO: handle exception
+			return null;
 		}
-		return 0;
+		
 	}
 	
 }

@@ -46,7 +46,11 @@
 											  Không được để trống !
 											</div>
                                         </c:if>
-                                        
+                                        <c:if test="${ resetMK == 0}">
+	                                        <div class="alert alert-danger" role="alert">
+											  Đã xảy ra lỗi trong quá trình đặt lại mật khẩu.Vui lòng kiểm tra lại email đăng kí !
+											</div>
+                                        </c:if>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Khôi phục
                                         </button>

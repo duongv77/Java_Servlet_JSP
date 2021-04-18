@@ -1,29 +1,19 @@
 package com.servlet;
 
 import java.io.IOException;
-import java.util.Properties;
-
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.auth.GuiMail;
 import com.dao.UserDAO;
 import com.entity.User;
 
 @WebServlet("/taotaikhoan")
-public class TaoTaiKhoan extends HttpServlet {
+public class TaoTaiKhoan extends GuiMail {
 	private UserDAO userDAO;
     public TaoTaiKhoan() {
         super();
@@ -42,13 +32,19 @@ public class TaoTaiKhoan extends HttpServlet {
 		String password = request.getParameter("password");
 		String fullname = request.getParameter("fullname");
 		if(email=="" || password=="" || fullname=="") {
-			int check = 1;
-			request.setAttribute("check", check);
+			int checkNull = 1;
+			request.setAttribute("checkNull", checkNull);
+			request.getRequestDispatcher("/views/taotaikhoan.jsp").forward(request, response);
+			return;
+		}
+		if(this.userDAO.kiemTraUser(email)!=null) {
+			request.setAttribute("checkAcount", 1);
 			request.getRequestDispatcher("/views/taotaikhoan.jsp").forward(request, response);
 			return;
 		}
 		
 		User entity = new User();
+	
 		try {
 			BeanUtils.populate(entity, request.getParameterMap());
 			entity.setAdmin(0);
@@ -59,37 +55,13 @@ public class TaoTaiKhoan extends HttpServlet {
 		
 		// Gửi mail chào mừng
 		
-		Properties props = new Properties();
-		props.setProperty("mail.smtp.auth", "true");
-		props.setProperty("mail.smtp.starttls.enable", "true");
-		props.setProperty("mail.smtp.host", "smtp.gmail.com");
-		props.setProperty("mail.smtp.port", "587");
+		String noiDung = "Bạn đã đăng kí tài khoản thành công với "
+						+"Username: "+email+ " Password: "+password
+						+" Chào mừng bạn đến với Dưỡng Đẹp Trai code không bug";
+		this.guiMail(email, noiDung);
 		
-		Session session = Session.getInstance(props,new Authenticator() {
-		protected PasswordAuthentication getPasswordAuthentication() {
-			String username = "dd22042001@gmail.com";
-			String password = "22042001d";
-			return new PasswordAuthentication(username, password);
-		}
-		});
-		
-		MimeMessage message = new MimeMessage(session);
-		
-		try {
-			
-			message.setFrom(new InternetAddress("dd22042001@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, email);
-			message.setSubject("Dưỡng Đẹp Trai", "utf-8");
-			message.setText( "Bạn đã đăng kí tài khoản thành công.Chào mừng bạn đến với Dưỡng Đẹp Trai code không bug", "utf-8","html");
-			message.setReplyTo(message.getFrom()); 
-			Transport.send(message);
-		} catch (MessagingException e) {
-			
-			e.printStackTrace();
-		}
-		
-		int check = 1;
-		request.setAttribute("check", check);
+		int checkCreateUserSuccess = 1;
+		request.setAttribute("checkCreateUserSuccess", checkCreateUserSuccess);
 		request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
 	}
 

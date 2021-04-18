@@ -50,7 +50,7 @@ public class AdminUserUpdate extends HttpServlet {
 		User entity = new User();
 		int id =Integer.parseInt(request.getParameter("id"));
 		User entityPre = this.userDAO.findByID(id);
-		entity.setEmail(entityPre.getEmail());
+		
 		try {
 			if(request.getPart("avatar").getSubmittedFileName()=="") {
 				System.out.println("if");
@@ -71,6 +71,7 @@ public class AdminUserUpdate extends HttpServlet {
 				entity.setAvatar(fileName);
 			}
 			BeanUtils.populate(entity, request.getParameterMap());
+			entity.setEmail(entityPre.getEmail());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

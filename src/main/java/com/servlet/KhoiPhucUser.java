@@ -48,17 +48,18 @@ public class KhoiPhucUser extends GuiMail {
 			request.getRequestDispatcher("/views/khoiphucmatkhau.jsp").forward(request, response);
 			return;
 		}
-		if(this.userDAO.setMK(email)==1) {
+		String userPassPlus = this.userDAO.setMK(email);
+		if(userPassPlus!=null) {
 			request.setAttribute("resetMK", 1);
+		}else {
+			request.setAttribute("resetMK", 0);
+			request.getRequestDispatcher("/views/khoiphucmatkhau.jsp").forward(request, response);
+			return;
 		}
-		String noiDung = "Mật khẩu mới của bạn là : 1234.";
+		String noiDung = "Mật khẩu mới của bạn là : "+userPassPlus+".";
 		this.guiMail(email, noiDung);
 		
 		request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
-	}
-	
-	public void guiMailMK(String email) {
-		
 	}
 	
 }

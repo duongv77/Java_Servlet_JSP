@@ -50,12 +50,16 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Nhập mật khẩu...">
                                         </div>
-                                        <c:if test="${ check == 1}">
+                                        <c:if test="${ checkNull == 1}">
 	                                        <div class="alert alert-danger" role="alert">
 											  Không được để trống !
 											</div>
                                         </c:if>
-                                        
+                                        <c:if test="${ checkAcount == 1}">
+	                                        <div class="alert alert-danger" role="alert">
+											  Email đã được sử dụng!
+											</div>
+                                        </c:if>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Đăng kí
                                         </button>
