@@ -70,6 +70,7 @@ public class ThongTinUser extends HttpServlet {
 		}
 		
 		this.userDAO.update(entity);
+		request.getSession().setAttribute("user", entity);
 		response.sendRedirect(request.getContextPath()+"/yeuthich");
 	}
 

@@ -41,14 +41,14 @@ public class ThemBaiViet extends BaseLayOut {
 		try {
 			Part part = request.getPart("anh");
 			
-			String realPath = request.getServletContext().getRealPath("/imgs");
+			String realPath = request.getServletContext().getRealPath("/imgs"); //thư mực tao trên sever
 			String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
 			
 			if(!Files.exists(Path.of(realPath))) {
 				Files.createDirectory(Path.of(realPath));
 			}
 			
-			part.write(realPath+"/"+fileName);
+			part.write(realPath+"/"+fileName); // đẩy ảnh lên sever
 			
 			BeanUtils.populate(entity, request.getParameterMap());
 			entity.setPoster(fileName);

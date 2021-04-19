@@ -8,6 +8,7 @@ encoding//src/main/java/com/servlet/ChiTietBaiViet.java=UTF-8
 encoding//src/main/java/com/servlet/KhoiPhucUser.java=UTF-8
 encoding//src/main/java/com/servlet/SendMail.java=UTF-8
 encoding//src/main/java/com/servlet/TaoTaiKhoan.java=UTF-8
+encoding//src/main/java/com/servlet/ThemBaiViet.java=UTF-8
 encoding//src/main/java/com/servlet/UpdateBaiViet.java=UTF-8
 encoding//src/main/java/com/utils/HibenateUtil.java=UTF-8
 encoding//src/main/webapp/views/thembaiviet.jsp=UTF-8
