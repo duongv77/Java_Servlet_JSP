@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dao.UserDAO;
 import com.dao.VideoDAO;
 import com.entity.User;
 import com.entity.Video;
@@ -20,6 +19,7 @@ import com.utils.HibenateUtil;
 /**
  * Servlet implementation class Home
  */
+
 @WebServlet("/home")
 public class Home extends BaseLayOut {
 	private VideoDAO videoDAO;

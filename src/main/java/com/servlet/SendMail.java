@@ -86,7 +86,6 @@ public class SendMail extends BaseLayOut {
 			message.setReplyTo(message.getFrom()); 
 			Transport.send(message);
 		} catch (MessagingException e) {
-			
 			e.printStackTrace();
 		}
 	

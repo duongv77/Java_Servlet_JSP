@@ -100,14 +100,42 @@
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 								</button>
 					      	</a>
-							<a class="mx-auto" href="/ASSM/admin/user/delete?id=${ listUser.id }">
-								<button type="button" class="btn btn-danger">
+							<a class="mx-auto" >
+								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#xoauser">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
 							</a>
+							<div class="modal fade" id="xoauser" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+			
+										<div class="modal-header">
+											<h5 class="modal-title">Xác nhận thay đổi?</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+			
+										<div class="modal-body">Sau khi thay đổi sẽ không thể khôi
+											phục lại.Bạn vẫn muốn tiếp tục ??</div>
+			
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Đóng</button>
+											<a href="/ASSM/admin/user/delete?id=${ listUser.id }">
+												<button type="button" class="btn btn-primary">Tiếp tục</button>
+											</a>
+											
+										</div>
+			
+									</div>
+								</div>
+							</div>										
 				      	</div>
 					 </td>
 				    </tr>
+				    
 				  </c:forEach>
 				    
 				  </tbody>

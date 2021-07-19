@@ -20,14 +20,6 @@
 	<div class="carousel-inner" >
 		<div class="carousel-item active">
 			<img alt="" src="./anh/thanhtruot1.png">
-			<!--<div class="carousel-caption">
-				<h1 class="display-2">Việt Hằng</h1>
-				<h3>Một sản phẩm đến từ Đào Dưỡng</h3>
-				<button type="button" class="btn btn-outline-light btn-lg">
-					XEM
-				</button>
-				<button type="button"  class="btn btn-primary btn-lg">ĐI ĐẾN</button>
-			</div>-->
 		</div>
 		<div class="carousel-item ">
 			<img alt="" src="./anh/thanhtruot2.png">
